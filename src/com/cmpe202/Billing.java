@@ -15,6 +15,7 @@ public class Billing {
 
         Inventory inventory = new Inventory();
         CardDatabase cardDatabase = new CardDatabase();
+        Order order = new Order();
 
         System.out.println("\n----------------OUTPUT-----------------");
         String inventoryFilename = args[0];
@@ -25,12 +26,69 @@ public class Billing {
         parseInventory(inventory, inventoryFilename);
         parseCreditCard(cardDatabase, inventoryFilename);
 
+        inventory.printInventory();
+        cardDatabase.printCardDatabase();
+
+
         String inputFilename = args[1];
         System.out.println("\nInput Filename: " + inputFilename);
 
 
-        inventory.printInventory();
-        cardDatabase.printCardDatabase();
+        parseInputFile(order, inputFilename);
+
+
+        order.printOrder();
+
+
+        Handler handler = initChainOfResponsibility(cardDatabase);
+
+        handler.handleRequest(order, inventory);
+
+    }
+
+    private static Handler initChainOfResponsibility(CardDatabase cardDatabase) {
+        Handler validationHandler = new ValidationHandler();
+        Handler cardReaderHandler = new CardReaderHandler(cardDatabase);
+        Handler orderSuccessfulHandler = new OrderSuccessfulHandler();
+        Handler orderFailureHandler = new OrderFailureHandler();
+
+        validationHandler.setNext(cardReaderHandler);
+        cardReaderHandler.setNext(orderSuccessfulHandler);
+        orderSuccessfulHandler.setNext(orderFailureHandler);
+
+        return validationHandler;
+    }
+
+    private static void parseInputFile(Order order, String inputFilename) throws FileNotFoundException {
+        try {
+            Scanner scanner = new Scanner(new File(inputFilename));
+
+
+            scanner.nextLine();
+
+            while (scanner.hasNextLine()) {
+                String currentLine = scanner.nextLine();
+                String[] split = currentLine.split(",");
+
+                String itemName = split[0];
+                String quantity = split[1];
+
+                Order.OrderItem orderItem = new Order.OrderItem(itemName, quantity);
+
+                order.putOrderItem(orderItem);
+
+                if (split.length == 3) {
+                    String cardNumber = split[2];
+                    order.addCardNumber(cardNumber);
+                }
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
     }
 
     private static void parseCreditCard(CardDatabase cardDatabase, String filename) throws FileNotFoundException {

@@ -13,7 +13,7 @@ public class Inventory implements Component {
 
     @Override
     public void add(Component component) {
-        inventoryMap.put(component.itemName(), component);
+        inventoryMap.put(component.itemName().toLowerCase(), component);
 
     }
 
@@ -25,6 +25,7 @@ public class Inventory implements Component {
 
     @Override
     public Component getChild(String name) {
+        name = name.toLowerCase();
         return inventoryMap.get(name);
     }
 
