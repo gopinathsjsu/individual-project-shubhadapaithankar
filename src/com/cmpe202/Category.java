@@ -28,4 +28,9 @@ public abstract class Category extends Leaf {
     public String itemName() {
         return itemName;
     }
+
+    @Override
+    public String toString() {
+        return "{ itemName: " + itemName + ", quantity: " + quantity + ", costPerUnit: " + costPerUnit + " }";
+    }
 }

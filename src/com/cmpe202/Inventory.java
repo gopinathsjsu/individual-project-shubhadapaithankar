@@ -46,7 +46,7 @@ public class Inventory implements Component {
 
     public void printInventory() {
 
-        System.out.println("PRINTING OUR INVENTORY");
+        System.out.println("\n\n--------------------PRINTING OUR INVENTORY------------------------");
         for (Map.Entry<String, Component> entry : inventoryMap.entrySet()) {
 
             System.out.println("Key -> " + entry.getKey() + ", value -> " + entry.getValue());

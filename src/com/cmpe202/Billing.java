@@ -1,32 +1,82 @@
 package com.cmpe202;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Billing {
 
     /**
-     *  /home/shubhada/202-individual-project/Sample_Inventory_Input_Output.csv
+     * /home/shubhada/202-individual-project/Sample_Inventory_Input_Output.csv
      */
 
 
-    public static void main (String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
 
         Inventory inventory = new Inventory();
+        CardDatabase cardDatabase = new CardDatabase();
 
-        System.out.println("----------------OUTPUT-----------------");
-        String filename = args[0];
-        System.out.println("Filename: " + filename);
+        System.out.println("\n----------------OUTPUT-----------------");
+        String inventoryFilename = args[0];
+        System.out.println("\nInventory Filename: " + inventoryFilename);
+
+
+        //Read the file line by line to prepare inventory
+        parseInventory(inventory, inventoryFilename);
+        parseCreditCard(cardDatabase, inventoryFilename);
+
+        String inputFilename = args[1];
+        System.out.println("\nInput Filename: " + inputFilename);
+
+
+        inventory.printInventory();
+        cardDatabase.printCardDatabase();
+    }
+
+    private static void parseCreditCard(CardDatabase cardDatabase, String filename) throws FileNotFoundException {
+
+        Scanner scanner = new Scanner(new File(filename));
 
         try {
-            Scanner scanner = new Scanner(new File(filename));
 
-            //Skip first two lines
-            scanner.nextLine();
-            scanner.nextLine();
+            //inventory lines are skilled from the csv
+            while (scanner.hasNextLine()) {
+                String currentLine = scanner.nextLine();
 
-            //Read the file line by line
+                if (currentLine.equals("Cards")) {
+                    break;
+                }
+            }
+
+            // ColumnName is read which is CardNumber
+            String columnName = scanner.nextLine();
+            System.out.println("columnName should be CardNumber. columnName : " + columnName);
+
+            //Actual cards are read.
+            while (scanner.hasNextLine()) {
+                String currentLine = scanner.nextLine();
+
+                cardDatabase.addIfAbsent(currentLine); //Card is added in the database;
+            }
+
+
+
+            scanner.close();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    private static void parseInventory(Inventory inventory, String filename) throws FileNotFoundException {
+
+        Scanner scanner = new Scanner(new File(filename));
+
+        try {
+
+            scanner.nextLine(); // Table name 'Items' is skipped
+            scanner.nextLine(); // Column Names are skipped.
+
             while (scanner.hasNextLine()) {
                 String currentLine = scanner.nextLine();
 
@@ -52,34 +102,12 @@ public class Billing {
 
 
             }
-
-
             scanner.close();
         } catch (RuntimeException e) {
             e.printStackTrace();
             throw e;
         }
 
-
-        inventory.printInventory();
-
-//        Essentials cloths = new Essentials(100,20);
-//        Essentials soap = new Essentials(200,5);
-//        Essentials shampoo = new Essentials(200,10);
-//        Essentials milk = new Essentials(100,5);
-//        Luxury perfume = new Luxury(50,50);
-//        Luxury chocolates = new Luxury(300,3);
-//        Luxury handbag = new Luxury(75,150);
-//        Luxury wallet = new Luxury(100,100);
-//        Misc bedSheet = new Misc(150,75);
-//        Misc footware = new Misc(200,25);
-//        Misc homeDecorePiece = new Misc(100,40);
-//        Misc pen = new Misc(400,3);
-//        Misc pencile = new Misc(400,3);
-
-        //parsing a CSV file into Inventory class
-
-       // Inventory inventory = new Inventory(new File ("/home/shubhada/Desktop/csv-inventory.csv"));
 
     }
 }
