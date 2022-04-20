@@ -1,23 +1,22 @@
 package com.cmpe202;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class Billing {
 
-    /**
-     * /home/shubhada/202-individual-project/Sample_Inventory_Input_Output.csv
-     */
 
     public static void main(String[] args) throws Exception {
 
+
+
         Inventory inventory = new Inventory();
-        CardDatabase cardDatabase = new CardDatabase();
+        CardDatabase cardDatabase = CardDatabase.getCardDatabase();
         Order order = new Order();
 
-        if (args.length != 2) {
-            throw new IllegalArgumentException("inventory.csv and input.csv should be provided.");
+        if (args.length != 3) {
+            throw new IllegalArgumentException("path to inventory.csv, input.csv and config.properties should be provided.");
         }
 
         System.out.println("\n----------------OUTPUT-----------------");
@@ -29,35 +28,57 @@ public class Billing {
         parseInventory(inventory, inventoryFilename);
         parseCreditCard(cardDatabase, inventoryFilename);
 
+
         inventory.printInventory();
         cardDatabase.printCardDatabase();
 
 
         String inputFilename = args[1];
         System.out.println("\nInput Filename: " + inputFilename);
-
-
         parseInputFile(order, inputFilename);
-        
+
+
+        Properties properties = loadProperties(args[2]);
+
+        final int capOfEssentials = Integer.parseInt(properties.getProperty("Essentials"));
+        System.out.println("Cap configured: Essentials: " + capOfEssentials);
+
+        final int capOfLuxury = Integer.parseInt(properties.getProperty("Luxury"));
+        System.out.println("Cap configured: Luxury: " + capOfLuxury);
+
+        final int capOfMisc = Integer.parseInt(properties.getProperty("Misc"));
+        System.out.println("Cap configured: Misc: " + capOfMisc);
+
+
         order.printOrder();
 
 
-        Handler handler = initChainOfResponsibility(cardDatabase);
+        Handler handler = initChainOfResponsibility(cardDatabase, capOfEssentials, capOfLuxury, capOfMisc);
 
         handler.handleRequest(order, inventory);
     }
 
-    private static Handler initChainOfResponsibility(CardDatabase cardDatabase) {
+    private static Properties loadProperties(String path) throws IOException {
+
+        InputStream inputStream = new FileInputStream(path);
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        return prop;
+    }
+
+    private static Handler initChainOfResponsibility(CardDatabase cardDatabase, int capOfEssentials, int capOfLuxury, int capOfMisc) {
+        Handler capValidationHandler = new CapValidationHandler(capOfEssentials, capOfLuxury, capOfMisc);
         Handler validationHandler = new ValidationHandler();
         Handler cardReaderHandler = new CardReaderHandler(cardDatabase);
         Handler orderSuccessfulHandler = new OrderSuccessfulHandler();
         Handler orderFailureHandler = new OrderFailureHandler();
 
+        capValidationHandler.setNext(validationHandler);
         validationHandler.setNext(cardReaderHandler);
         cardReaderHandler.setNext(orderSuccessfulHandler);
         orderSuccessfulHandler.setNext(orderFailureHandler);
 
-        return validationHandler;
+        return capValidationHandler;
     }
 
     private static void parseInputFile(Order order, String inputFilename) throws FileNotFoundException {

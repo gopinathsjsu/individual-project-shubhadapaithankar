@@ -7,6 +7,10 @@ public class Essentials extends Category {
         super(itemName, quantity, costPerUnit);
     }
 
+    @Override
+    public CategoryType getCategoryType() {
+        return CategoryType.ESSENTIALS;
+    }
 
 
     @Override

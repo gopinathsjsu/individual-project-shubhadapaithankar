@@ -10,4 +10,5 @@ public interface Component {
     public void remove(Component component);
     public Component getChild(String name);
 
+    CategoryType getCategoryType();
 }

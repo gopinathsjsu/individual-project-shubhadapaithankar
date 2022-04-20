@@ -5,9 +5,7 @@ import java.util.Map;
 
 public class ValidationHandler implements Handler {
 
-
     private Handler next;
-
 
     @Override
     public void handleRequest(Order order, Inventory inventory) throws IOException {

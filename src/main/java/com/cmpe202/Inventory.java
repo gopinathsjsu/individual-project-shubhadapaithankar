@@ -29,6 +29,11 @@ public class Inventory implements Component {
         return inventoryMap.get(name);
     }
 
+    @Override
+    public CategoryType getCategoryType() {
+        throw new UnsupportedOperationException();
+    }
+
 
     @Override
     public String itemName() {

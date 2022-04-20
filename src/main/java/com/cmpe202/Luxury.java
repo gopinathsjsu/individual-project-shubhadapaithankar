@@ -17,6 +17,11 @@ public class Luxury extends Category {
     }
 
     @Override
+    public CategoryType getCategoryType() {
+        return CategoryType.LUXURY;
+    }
+
+    @Override
     public void add(Component component) {
         throw new UnsupportedOperationException();
     }

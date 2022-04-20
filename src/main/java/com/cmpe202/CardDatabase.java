@@ -6,9 +6,18 @@ import java.util.List;
 public class CardDatabase {
 
     private final List<String> cards;
+    private static CardDatabase cardDatabase;
 
-    public CardDatabase() {
+    private CardDatabase() {
         cards = new ArrayList<>();
+    }
+
+    public static CardDatabase getCardDatabase() {
+
+        if (cardDatabase == null) {
+            cardDatabase = new CardDatabase();
+        }
+        return cardDatabase;
     }
 
     public void addIfAbsent(String cardNumber) {

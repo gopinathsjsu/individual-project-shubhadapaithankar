@@ -7,6 +7,11 @@ public class Misc extends Category{
     }
 
     @Override
+    public CategoryType getCategoryType() {
+        return CategoryType.MISC;
+    }
+
+    @Override
     public void add(Component component) {
         throw new UnsupportedOperationException();
     }
