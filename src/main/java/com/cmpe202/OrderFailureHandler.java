@@ -20,7 +20,7 @@ public class OrderFailureHandler implements Handler {
 
             if (entry.getValue().equals(Order.Status.FAILURE)) {
                 failureItems.append(entry.getKey().getItemName());
-                failureItems.append(",");
+                failureItems.append(", ");
             }
 
         }
@@ -32,7 +32,7 @@ public class OrderFailureHandler implements Handler {
 
     private void generateOutputCSV(Order order, StringBuilder failureItems) throws IOException {
 
-        FileWriter fileWriter = new FileWriter("output.csv", false);
+        FileWriter fileWriter = new FileWriter("output.txt", false);
         PrintWriter printWriter = new PrintWriter(fileWriter, true);
 
         printWriter.append("Please Correct Quantities : ").append(String.valueOf(failureItems));

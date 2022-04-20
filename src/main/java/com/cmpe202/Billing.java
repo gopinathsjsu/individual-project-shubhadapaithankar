@@ -10,12 +10,15 @@ public class Billing {
      * /home/shubhada/202-individual-project/Sample_Inventory_Input_Output.csv
      */
 
-
     public static void main(String[] args) throws Exception {
 
         Inventory inventory = new Inventory();
         CardDatabase cardDatabase = new CardDatabase();
         Order order = new Order();
+
+        if (args.length != 2) {
+            throw new IllegalArgumentException("inventory.csv and input.csv should be provided.");
+        }
 
         System.out.println("\n----------------OUTPUT-----------------");
         String inventoryFilename = args[0];
@@ -35,15 +38,13 @@ public class Billing {
 
 
         parseInputFile(order, inputFilename);
-
-
+        
         order.printOrder();
 
 
         Handler handler = initChainOfResponsibility(cardDatabase);
 
         handler.handleRequest(order, inventory);
-
     }
 
     private static Handler initChainOfResponsibility(CardDatabase cardDatabase) {

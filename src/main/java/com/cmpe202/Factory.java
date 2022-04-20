@@ -12,16 +12,14 @@ public class Factory {
 
         switch (categoryType) {
 
-            case ESSENTIALS -> {
+            case ESSENTIALS:
                 return new Essentials(itemName, quantityInt, costPerUnitDouble);
-            }
-            case MISC -> {
+            case MISC:
                 return new Misc(itemName, quantityInt, costPerUnitDouble);
-            }
-            case LUXURY -> {
+            case LUXURY:
                 return new Luxury(itemName, quantityInt, costPerUnitDouble);
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + categoryType);
+            default:
+                throw new IllegalStateException("Unexpected value: " + categoryType);
         }
 
     }
