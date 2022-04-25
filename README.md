@@ -23,19 +23,17 @@ java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmp
 
 ```
 
-### Step 3: Check the output file generate if the program ran successfully.
-
-For a SUCCESSFUL transaction, `successful_order_output.csv` is generated in the same directory.
-For a UNSUCCESSFUL transaction, `unsuccessful_order_output.txt` is generated in the same directory.
-
-
-
-Here are the arguments you need to give. There should be three arguments for the jar to run.  
+Here are the arguments you need to give. There should be three arguments for the jar to run.
 
 * Argument 1: Path to the inventory.csv (this is your inventory csv file)
 * Argument 2: Path to the input.csv (this is your input order csv file)
 * Argument 3: Path to the config.properties (this is where you configure the cap of each category)
 
+
+### Step 3: Check the output file generate if the program ran successfully.
+
+For a SUCCESSFUL transaction, `successful_order_output.csv` is generated in the same directory.
+For a UNSUCCESSFUL transaction, `unsuccessful_order_output.txt` is generated in the same directory.
 
 ## How to configure cap on each category
 
