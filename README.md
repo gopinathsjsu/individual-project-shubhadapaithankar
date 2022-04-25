@@ -198,7 +198,7 @@ Factory
 
 ### Participants:
 
-Componet Inteface,
+Component Interface,
 Composite: Inventory
 Leaf: Essentials, Luxury, Misc
 
