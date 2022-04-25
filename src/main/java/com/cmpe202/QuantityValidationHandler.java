@@ -3,7 +3,7 @@ package com.cmpe202;
 import java.io.IOException;
 import java.util.Map;
 
-public class ValidationHandler implements Handler {
+public class QuantityValidationHandler implements Handler {
 
     private Handler next;
 

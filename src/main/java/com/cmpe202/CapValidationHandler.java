@@ -63,7 +63,8 @@ public class CapValidationHandler implements Handler {
 
     private void generateOutputTxt(StringBuilder reason) throws IOException {
 
-        FileWriter fileWriter = new FileWriter("output", false);
+        System.out.println("FAILURE! \nunsuccessful_order_out.txt is generated.");
+        FileWriter fileWriter = new FileWriter("unsuccessful_order_output.txt", false);
         PrintWriter printWriter = new PrintWriter(fileWriter, true);
 
         printWriter.append(reason);

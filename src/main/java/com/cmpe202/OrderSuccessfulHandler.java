@@ -36,7 +36,8 @@ public class OrderSuccessfulHandler implements Handler{
 
     private void generateOutputCSV(Order order) throws IOException {
 
-        FileWriter fileWriter = new FileWriter("output", false);
+        System.out.println("SUCCESS! \nsuccessful_order_output.csv is generated.");
+        FileWriter fileWriter = new FileWriter("successful_order_output.csv", false);
         PrintWriter printWriter = new PrintWriter(fileWriter, true);
 
 

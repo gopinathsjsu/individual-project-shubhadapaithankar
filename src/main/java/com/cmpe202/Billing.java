@@ -9,8 +9,6 @@ public class Billing {
 
     public static void main(String[] args) throws Exception {
 
-
-
         Inventory inventory = new Inventory();
         CardDatabase cardDatabase = CardDatabase.getCardDatabase();
         Order order = new Order();
@@ -58,6 +56,7 @@ public class Billing {
         handler.handleRequest(order, inventory);
     }
 
+
     private static Properties loadProperties(String path) throws IOException {
 
         InputStream inputStream = new FileInputStream(path);
@@ -68,13 +67,13 @@ public class Billing {
 
     private static Handler initChainOfResponsibility(CardDatabase cardDatabase, int capOfEssentials, int capOfLuxury, int capOfMisc) {
         Handler capValidationHandler = new CapValidationHandler(capOfEssentials, capOfLuxury, capOfMisc);
-        Handler validationHandler = new ValidationHandler();
+        Handler quantityValidationHandler = new QuantityValidationHandler();
         Handler cardReaderHandler = new CardReaderHandler(cardDatabase);
         Handler orderSuccessfulHandler = new OrderSuccessfulHandler();
         Handler orderFailureHandler = new OrderFailureHandler();
 
-        capValidationHandler.setNext(validationHandler);
-        validationHandler.setNext(cardReaderHandler);
+        capValidationHandler.setNext(quantityValidationHandler);
+        quantityValidationHandler.setNext(cardReaderHandler);
         cardReaderHandler.setNext(orderSuccessfulHandler);
         orderSuccessfulHandler.setNext(orderFailureHandler);
 

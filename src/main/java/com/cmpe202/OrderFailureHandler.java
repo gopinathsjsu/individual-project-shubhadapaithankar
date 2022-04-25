@@ -32,7 +32,8 @@ public class OrderFailureHandler implements Handler {
 
     private void generateOutputCSV(Order order, StringBuilder failureItems) throws IOException {
 
-        FileWriter fileWriter = new FileWriter("output", false);
+        System.out.println("FAILURE! \nunsuccessful_order_out.csv is generated.");
+        FileWriter fileWriter = new FileWriter("unsuccessful_order_output.txt", false);
         PrintWriter printWriter = new PrintWriter(fileWriter, true);
 
         printWriter.append("Please Correct Quantities : ").append(String.valueOf(failureItems));
