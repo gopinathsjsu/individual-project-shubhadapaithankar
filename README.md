@@ -65,7 +65,7 @@ Pen,1
 
 Run the following command 
 
-```aidl
+```
 java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmpe202.Billing inventory.csv input1.csv config.properties
 
 ```
@@ -74,7 +74,7 @@ Generated output file will be `successful_order_output.csv`
 
 Here is the content of the output file.
 
-```aidl
+```
 
 Item, Quantity, Price, TotalPrice
 Pen,1,3.0,126.0
@@ -109,7 +109,7 @@ Misc=3
 
 Run the following command
 
-```aidl
+```
 java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmpe202.Billing inventory.csv input2.csv config.properties
 
 ```
@@ -118,14 +118,14 @@ Generated output file will be `unsuccessful_order_output.txt`
 
 Here is the content of the output file.
 
-```aidl
+```
 
 Please Correct Quantities : Shampoo, 
 
 ```
 
 
-### A Unsuccessful transaction (By Cap)
+### An Unsuccessful transaction (By Cap)
 
 We have sample input files. Here is how you can run an un-successful transaction by using `input3.csv`
 
@@ -142,7 +142,7 @@ Pen,1
 
 Here is config.properties (We will revert the limit to the category Essentials)
 
-```aidl
+```
 Essentials=3
 Luxury=4
 Misc=3
@@ -150,7 +150,7 @@ Misc=3
 
 Run the following command
 
-```aidl
+```
 java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmpe202.Billing inventory.csv input3.csv config.properties
 
 ```
@@ -159,7 +159,7 @@ Generated output file will be `unsuccessful_order_output.txt`
 
 Here is the content of the output file.
 
-```aidl
+```
 Max Cap Exceeded For Essentials: Cap: 3, Count of Essentials in the Order: 201
 
 ```
