@@ -4,33 +4,44 @@ individual-project-shubhadapaithankar created by GitHub Classroom
 
 ## Steps to run the program
 
-### Step 1: Compile the project using maven
+### Step 1: Compile the Billing class using `javac`
 
-In order to compile the project, run the following command in the project directory containing pom.xml.
+In order to compile the project, run the following command in the project directory.
 
+Go to the src directory. Billing class is located here.
 ```
-mvn clean install
-```
-
-It will generate the jar file. 
-
-
-### Step 2: Run the jar file
-
-Run the jar file with using following command.
-```
-java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmpe202.Billing inventory.csv input.csv config.properties
-
+cd src
 ```
 
-Here are the arguments you need to give. There should be three arguments for the jar to run.
+Compile Billing.java class by using `javac`.
 
-* Argument 1: Path to the inventory.csv (this is your inventory csv file)
-* Argument 2: Path to the input.csv (this is your input order csv file)
-* Argument 3: Path to the config.properties (this is where you configure the cap of each category)
+```
+javac Billing.java
+```
 
 
-### Step 3: Check the output file generate if the program ran successfully.
+### Step 2: Run the Billing class using `java` command
+
+Run the Billing class
+```
+java Billing
+```
+
+It will prompt for the location of the input file.
+
+```
+shubhada@shubhada-ASUS-TUF-Gaming-F15-FX506LI-FX506LI:~/testProjects/individual-project-shubhadapaithankar/src$ java Billing
+
+
+
+Enter a path to the input file (containing order): input1.csv
+
+Input File Path: input1.csv
+
+```
+You can choose to enter the absolute path instead. That should work. 
+
+### Step 3: Check the output files generated
 
 For a SUCCESSFUL transaction, `successful_order_output.csv` is generated in the same directory.
 For a UNSUCCESSFUL transaction, `unsuccessful_order_output.txt` is generated in the same directory.
@@ -63,11 +74,14 @@ Wallet,1
 Pen,1
 ```
 
-Run the following command 
+Run the command `java Billing` and when prompted, enter the path of `input1.csv`
 
 ```
-java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmpe202.Billing inventory.csv input1.csv config.properties
+shubhada@shubhada-ASUS-TUF-Gaming-F15-FX506LI-FX506LI:~/testProjects/individual-project-shubhadapaithankar/src$ java Billing
 
+
+
+Enter a path to the input file (containing order): input1.csv
 ```
 
 Generated output file will be `successful_order_output.csv`
@@ -84,7 +98,7 @@ Wallet,1,100.0
 
 ```
 
-### A Unsuccessful transaction (By Quantity)
+### An Unsuccessful transaction (By Quantity)
 
 We have sample input files. Here is how you can run an un-successful transaction by using `input2.csv`
 
@@ -99,18 +113,22 @@ Pen,1
 
 ```
 
-Here is config.properties (We changed the limit to the category Essentials)
+Here is config.properties (We changed the limit to the category com.cmpe202.Essentials)
 
-```aidl
+```
 Essentials=300
 Luxury=4
 Misc=3
 ```
 
-Run the following command
+Run the command `java Billing` and when prompted, enter the path of `input2.csv`
 
 ```
-java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmpe202.Billing inventory.csv input2.csv config.properties
+shubhada@shubhada-ASUS-TUF-Gaming-F15-FX506LI-FX506LI:~/testProjects/individual-project-shubhadapaithankar/src$ java Billing
+
+
+
+Enter a path to the input file (containing order): input2.csv
 
 ```
 
@@ -129,7 +147,7 @@ Please Correct Quantities : Shampoo,
 
 We have sample input files. Here is how you can run an un-successful transaction by using `input3.csv`
 
-input2.csv
+input3.csv
 
 ```
 Item,Quantity,CardNumber
@@ -140,7 +158,7 @@ Pen,1
 
 ```
 
-Here is config.properties (We will revert the limit to the category Essentials)
+Here is config.properties (We will revert the limit to the category com.cmpe202.Essentials)
 
 ```
 Essentials=3
@@ -148,11 +166,14 @@ Luxury=4
 Misc=3
 ```
 
-Run the following command
+Run the command `java Billing` and when prompted, enter the path of `input3.csv`
 
 ```
-java -cp  target/individual-project-shubhadapaithankar-1.0-SNAPSHOT.jar  com.cmpe202.Billing inventory.csv input3.csv config.properties
+shubhada@shubhada-ASUS-TUF-Gaming-F15-FX506LI-FX506LI:~/testProjects/individual-project-shubhadapaithankar/src$ java Billing
 
+
+
+Enter a path to the input file (containing order): input3.csv
 ```
 
 Generated output file will be `unsuccessful_order_output.txt`
@@ -160,7 +181,7 @@ Generated output file will be `unsuccessful_order_output.txt`
 Here is the content of the output file.
 
 ```
-Max Cap Exceeded For Essentials: Cap: 3, Count of Essentials in the Order: 201
+Max Cap Exceeded For com.cmpe202.Essentials: Cap: 3, Count of com.cmpe202.Essentials in the com.cmpe202.Order: 201
 
 ```
 
@@ -174,27 +195,26 @@ Here is the class diagram:
 
 ### Design Patterns: 
 
-# Singleton 
+# Singleton Pattern
 
 ### Participants: 
 
 CardDatabase
 
-# Chain of Responsibility
+# Chain of Responsibility Pattern
 
 ### Participants: 
-
-Handler Interface: Handler
+Interface: Handler
 ConcreteHandlers: CardReaderHandler, CapValidationHandler, OrderSuccessfulHandler, QuantityValidationHandler
 
 
-# Factory
+# Factory Pattern
 
 ### Participants: 
 
 Factory
 
-# Composite 
+# Composite Pattern
 
 ### Participants:
 
