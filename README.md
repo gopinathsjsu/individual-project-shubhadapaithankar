@@ -27,6 +27,7 @@ Run the Billing class
 java Billing
 ```
 
+Inventory is scanned from `inventory.csv` (You will need to change this file if you are making changes in inventory)
 It will prompt for the location of the input file.
 
 ```
