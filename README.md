@@ -196,12 +196,14 @@ Here is the class diagram:
 ### Design Patterns: 
 
 # Singleton Pattern
+![image](https://user-images.githubusercontent.com/99461999/166174337-e68f3aac-37be-46cf-b2a8-47fab49cd582.png)
 
 ### Participants: 
 
 CardDatabase
 
 # Chain of Responsibility Pattern
+![image](https://user-images.githubusercontent.com/99461999/166174293-58efc6eb-4aef-4aa7-a4f0-43d49858b8ce.png)
 
 ### Participants: 
 Interface: Handler
@@ -209,12 +211,14 @@ ConcreteHandlers: CardReaderHandler, CapValidationHandler, OrderSuccessfulHandle
 
 
 # Factory Pattern
+![image](https://user-images.githubusercontent.com/99461999/166174358-3db4942b-2ab9-4790-b628-adec1b998fc4.png)
 
 ### Participants: 
 
 Factory
 
 # Composite Pattern
+![image](https://user-images.githubusercontent.com/99461999/166174220-b8b5109e-6da8-479b-8068-ef8b65876a4c.png)
 
 ### Participants:
 
