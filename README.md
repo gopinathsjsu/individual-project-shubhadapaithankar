@@ -27,7 +27,6 @@ Run the Billing class
 java Billing
 ```
 
-Inventory is scanned from `inventory.csv` (You will need to change this file if you are making changes in inventory)
 It will prompt for the location of the input file.
 
 ```
@@ -41,6 +40,8 @@ Input File Path: input1.csv
 
 ```
 You can choose to enter the absolute path instead. That should work. 
+
+Inventory is scanned from `inventory.csv` (You will need to change this file if you are making changes in inventory)
 
 ### Step 3: Check the output files generated
 
