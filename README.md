@@ -115,7 +115,7 @@ Pen,1
 
 ```
 
-Here is config.properties (We changed the limit to the category com.cmpe202.Essentials)
+Here is config.properties (We changed the limit to the category Essentials)
 
 ```
 Essentials=300
@@ -160,7 +160,7 @@ Pen,1
 
 ```
 
-Here is config.properties (We will revert the limit to the category com.cmpe202.Essentials)
+Here is config.properties (We will revert the limit to the category Essentials)
 
 ```
 Essentials=3

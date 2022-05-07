@@ -87,7 +87,7 @@ public class Order {
             System.out.println("Key -> " + entry.getKey() + ", value -> " + entry.getValue());
         }
 
-        System.out.println("\n\n----------CARD NUMMBERS IN THE ORDER-----------");
+        System.out.println("\n\n----------CARD NUMBERS IN THE ORDER-----------");
         System.out.println("Cards : { " + cardNumbers + " }");
 
     }

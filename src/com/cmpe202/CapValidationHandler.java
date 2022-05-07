@@ -50,11 +50,11 @@ public class CapValidationHandler implements Handler {
 
 
         if (countOfEssentials > capOfEssentials) {
-            generateOutputTxt(new StringBuilder("Max Cap Exceeded For com.cmpe202.Essentials: Cap: " + capOfEssentials + ", Count of com.cmpe202.Essentials in the com.cmpe202.Order: " + countOfEssentials));
+            generateOutputTxt(new StringBuilder("Max Cap Exceeded For Essentials: Cap: " + capOfEssentials + ", Count of Essentials in the Order: " + countOfEssentials));
         } else if (countOfLuxury > capOfLuxury) {
-            generateOutputTxt(new StringBuilder("Max Cap Exceeded For com.cmpe202.Luxury: Cap: " + capOfLuxury + ", Count of com.cmpe202.Luxury in the com.cmpe202.Order: " + countOfLuxury));
+            generateOutputTxt(new StringBuilder("Max Cap Exceeded For Luxury: Cap: " + capOfLuxury + ", Count of Luxury in the Order: " + countOfLuxury));
         } else if (countOfMisc > capOfMisc) {
-            generateOutputTxt(new StringBuilder("Max Cap Exceeded For com.cmpe202.Misc: Cap: " + capOfMisc + ", Count of com.cmpe202.Misc in the com.cmpe202.Order: " + countOfMisc));
+            generateOutputTxt(new StringBuilder("Max Cap Exceeded For Misc: Cap: " + capOfMisc + ", Count of Misc in the Order: " + countOfMisc));
         } else if (next != null) {
             next.handleRequest(order, inventory);
         }
